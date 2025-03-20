@@ -8,10 +8,8 @@ PYTHON_VERSION := 3.12
 check-deps:
 	@command -v git >/dev/null 2>&1 || { echo "Error: 'git' is not installed or not in PATH." >&2; exit 1; }
 	@command -v poetry >/dev/null 2>&1 || { echo "Error: 'poetry' is not installed or not in PATH." >&2; exit 1; }
-	@command -v pyenv >/dev/null 2>&1 || { echo "Error: 'pyenv' is not installed or not in PATH." >&2; exit 1; }
 
 $(VENV):
-	pyenv local $(PYTHON_VERSION)
 	poetry env use $(PYTHON_VERSION)
 
 $(TIMESTAMP): pyproject.toml poetry.lock | $(VENV)
