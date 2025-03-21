@@ -87,14 +87,14 @@ files = [
 
 [[package]]
 name = "matchescu-base"
-version = "0.11.0"
+version = "0.12.0"
 description = ""
 optional = false
 python-versions = "<4.0,>=3.11"
 groups = ["main"]
 files = [
-    {file = "matchescu_base-0.11.0-py3-none-any.whl", hash = "sha256:d285858564c87c940135b9f7073f2c196e2cba7ab803cdbfcd397c521d1ae94e"},
-    {file = "matchescu_base-0.11.0.tar.gz", hash = "sha256:b34bb8654a58c05c6830916401f62a6ad8571ac9016a4ecbca080455f3d45f97"},
+    {file = "matchescu_base-0.12.0-py3-none-any.whl", hash = "sha256:b13a27e879246a66158436444a4d0e8c4f476b3a9c4e7d6b4b4bd6ebe4e918c6"},
+    {file = "matchescu_base-0.12.0.tar.gz", hash = "sha256:9320d860089cc432f9a6d63aed436513dad148d9495aea8626a25cff5750a834"},
 ]
 
 [[package]]
@@ -283,4 +283,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "3c456321700f6741915bd71106ab0768e99f36e488f5bb03e4cf3726e853259b"
+content-hash = "3422fe76e5af62f152f726f9e5d2a6817e96fe118b51547ca046735d249fd391"
