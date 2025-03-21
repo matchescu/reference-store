@@ -5,17 +5,6 @@ from matchescu.reference_store.id_table._in_memory import InMemoryIdTable
 from matchescu.typing import EntityReferenceIdentifier
 
 
-class EntityReferenceTuple(tuple):
-    id: EntityReferenceIdentifier
-
-
-@pytest.fixture
-def entity_reference():
-    result = EntityReferenceTuple([1, 2, 3])
-    result.id = EntityReferenceIdentifier(1, "test")
-    return result
-
-
 @pytest.fixture
 def sut():
     return InMemoryIdTable()
@@ -55,12 +44,10 @@ def test_iterate(sut, entity_reference):
     assert list(sut) == [entity_reference]
 
 
-def test_filter_by_source(sut):
-    ref1 = EntityReferenceTuple([1])
-    ref1.id = EntityReferenceIdentifier(1, "test_1")
+def test_filter_by_source(sut, new_entity_reference):
+    ref1 = new_entity_reference(EntityReferenceIdentifier(1, "test_1"), [1])
     sut.put(ref1)
-    ref2 = EntityReferenceTuple([2])
-    ref2.id = EntityReferenceIdentifier(2, "test_2")
+    ref2 = new_entity_reference(EntityReferenceIdentifier(2, "test_2"), [2])
     sut.put(ref2)
 
     test_1_refs = list(sut.get_by_source("test_1"))
