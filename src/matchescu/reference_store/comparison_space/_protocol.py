@@ -1,8 +1,10 @@
 from typing import Protocol, Iterable, Sized
 
-from matchescu.typing import EntityReference
+from matchescu.typing import EntityReferenceIdentifier
 
 
-class BinaryComparisonSpace(Iterable, Sized, Protocol):
-    def put(self, left: EntityReference, right: EntityReference) -> None:
+class BinaryComparisonSpace(Iterable[EntityReferenceIdentifier], Sized, Protocol):
+    def put(
+        self, left: EntityReferenceIdentifier, right: EntityReferenceIdentifier
+    ) -> None:
         pass
