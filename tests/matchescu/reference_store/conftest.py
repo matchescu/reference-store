@@ -1,20 +1,14 @@
-from typing import Iterable
-
 import pytest
 
 from matchescu.typing import EntityReferenceIdentifier
 
 
-class EntityReferenceTuple(tuple):
+class EntityReferenceStub(dict):
     id: EntityReferenceIdentifier
 
-
-def _new_tuple(
-    identifier: EntityReferenceIdentifier, value: Iterable
-) -> EntityReferenceTuple:
-    ref = EntityReferenceTuple(value)
-    ref.id = identifier
-    return ref
+    def __init__(self, identifier: EntityReferenceIdentifier, **kwargs):
+        super().__init__(**kwargs)
+        self.id = identifier
 
 
 @pytest.fixture
@@ -27,11 +21,24 @@ def label():
     return 1
 
 
-@pytest.fixture(scope="session")
-def new_entity_reference():
-    return _new_tuple
+@pytest.fixture
+def ref_id(label, source):
+    def _(lbl=None, src=None):
+        return EntityReferenceIdentifier(lbl or label, src or source)
+
+    return _
 
 
 @pytest.fixture
-def entity_reference(source, label):
-    return _new_tuple(EntityReferenceIdentifier(label, source), [label])
+def ref(ref_id, label, source):
+    def _(lbl=None, src=None):
+        lbl = lbl or label
+        src = src or source
+        return EntityReferenceStub(ref_id(lbl, src), id=lbl)
+
+    return _
+
+
+@pytest.fixture
+def entity_reference(ref):
+    return ref()

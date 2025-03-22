@@ -1,14 +1,16 @@
 from collections.abc import Iterator
 
-from matchescu.typing import EntityReference, EntityReferenceIdentifier
+from matchescu.typing import EntityReferenceIdentifier
 
 
 class InMemoryComparisonSpace:
     def __init__(self):
         self.__data = {}
 
-    def put(self, ref1: EntityReference, ref2: EntityReference) -> None:
-        key = (ref1.id, ref2.id)
+    def put(
+        self, left_id: EntityReferenceIdentifier, right_id: EntityReferenceIdentifier
+    ) -> None:
+        key = (left_id, right_id)
         val = self.__data.get(key, 0)
         self.__data[key] = val + 1
 

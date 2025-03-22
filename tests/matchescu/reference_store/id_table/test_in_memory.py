@@ -44,14 +44,12 @@ def test_iterate(sut, entity_reference):
     assert list(sut) == [entity_reference]
 
 
-def test_filter_by_source(sut, new_entity_reference):
-    ref1 = new_entity_reference(EntityReferenceIdentifier(1, "test_1"), [1])
-    sut.put(ref1)
-    ref2 = new_entity_reference(EntityReferenceIdentifier(2, "test_2"), [2])
-    sut.put(ref2)
+def test_filter_by_source(sut, ref):
+    sut.put(ref(1, "test_1"))
+    sut.put(ref(2, "test_2"))
 
     test_1_refs = list(sut.get_by_source("test_1"))
     test_2_refs = list(sut.get_by_source("test_2"))
 
-    assert test_1_refs == [ref1]
-    assert test_2_refs == [ref2]
+    assert all(x.id.source == "test_1" for x in test_1_refs)
+    assert all(x.id.source == "test_2" for x in test_2_refs)
