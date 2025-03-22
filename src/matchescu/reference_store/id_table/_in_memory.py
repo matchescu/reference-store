@@ -1,5 +1,5 @@
 from functools import partial
-from typing import Iterable, Hashable
+from typing import Iterable
 
 from matchescu.reference_store._exceptions import EntityReferenceNotFound
 from matchescu.typing import EntityReference, EntityReferenceIdentifier
@@ -20,11 +20,10 @@ class InMemoryIdTable(object):
             return
         self._id_table[ref.id] = ref
 
-    def get(self, source: str, label: Hashable) -> EntityReference:
-        identifier = EntityReferenceIdentifier(label, source)
-        if identifier not in self._id_table:
-            raise EntityReferenceNotFound(identifier)
-        return self._id_table[identifier]
+    def get(self, ref_id: EntityReferenceIdentifier) -> EntityReference:
+        if ref_id not in self._id_table:
+            raise EntityReferenceNotFound(ref_id)
+        return self._id_table[ref_id]
 
     @staticmethod
     def __has_source(identifier: EntityReferenceIdentifier, source: str) -> bool:

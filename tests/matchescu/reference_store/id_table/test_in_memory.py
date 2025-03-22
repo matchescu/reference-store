@@ -18,7 +18,7 @@ def test_add_one_item(sut, entity_reference):
     sut.put(entity_reference)
 
     assert len(sut) == 1
-    assert sut.get("test", 1) == entity_reference
+    assert sut.get(EntityReferenceIdentifier(1, "test")) == entity_reference
 
 
 def test_add_same_item_twice(sut, entity_reference):
@@ -30,7 +30,7 @@ def test_add_same_item_twice(sut, entity_reference):
 
 def test_get_non_existent_item(sut, entity_reference):
     with pytest.raises(EntityReferenceNotFound) as exc_wrapper:
-        sut.get("test", 1)
+        sut.get(EntityReferenceIdentifier(1, "test"))
 
     assert (
         str(exc_wrapper.value)
