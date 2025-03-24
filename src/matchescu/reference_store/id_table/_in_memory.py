@@ -25,6 +25,11 @@ class InMemoryIdTable(object):
             raise EntityReferenceNotFound(ref_id)
         return self._id_table[ref_id]
 
+    def get_all(
+        self, ref_ids: Iterable[EntityReferenceIdentifier]
+    ) -> Iterable[EntityReference]:
+        return list(map(self.get, ref_ids))
+
     @staticmethod
     def __has_source(identifier: EntityReferenceIdentifier, source: str) -> bool:
         return identifier.source == source
