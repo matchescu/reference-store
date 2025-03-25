@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "matchescu-reference-store"
 version = "0.6.1"
-description = "Storage options for entity references"
+description = "Entity reference storage data types and APIs"
 authors = ["Andrei Olar <andrei.olar@samlex.ro>"]
 license = "MIT"
 readme = "README.md"
@@ -9,7 +9,7 @@ packages = [{include="matchescu", from="src"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
-matchescu-base = "^0.14.0"
+matchescu-base = "^0.16.1"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
