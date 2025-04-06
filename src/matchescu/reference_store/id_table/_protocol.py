@@ -4,7 +4,7 @@ from typing import Protocol, Sized
 from matchescu.typing import EntityReferenceIdentifier, EntityReference
 
 
-class IdTable(Iterable, Sized, Protocol):
+class IdTable(Iterable[EntityReference], Sized, Protocol):
     def get(self, ref_id: EntityReferenceIdentifier) -> EntityReference:
         pass
 
