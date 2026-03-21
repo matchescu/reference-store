@@ -10,5 +10,5 @@ class BinaryComparisonSpace(
 ):
     def put(
         self, left: EntityReferenceIdentifier, right: EntityReferenceIdentifier
-    ) -> None:
+    ) -> "BinaryComparisonSpace":
         pass

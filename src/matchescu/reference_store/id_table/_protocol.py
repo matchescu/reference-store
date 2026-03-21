@@ -5,6 +5,9 @@ from matchescu.typing import EntityReferenceIdentifier, EntityReference
 
 
 class IdTable(Iterable[EntityReference], Sized, Protocol):
+    def ids(self) -> Iterable[EntityReferenceIdentifier]:
+        pass
+
     def get(self, ref_id: EntityReferenceIdentifier) -> EntityReference:
         pass
 
@@ -16,5 +19,5 @@ class IdTable(Iterable[EntityReference], Sized, Protocol):
     def get_by_source(self, source: str) -> Iterable[EntityReference]:
         pass
 
-    def put(self, ref: EntityReference) -> None:
+    def put(self, ref: EntityReference) -> "IdTable":
         pass

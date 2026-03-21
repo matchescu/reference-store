@@ -1,24 +1,30 @@
 from functools import partial
-from typing import Iterable
+from typing import Iterable, Iterator
+
+from matchescu.reference_store.id_table._protocol import IdTable
 
 from matchescu.reference_store._exceptions import EntityReferenceNotFound
 from matchescu.typing import EntityReference, EntityReferenceIdentifier
 
 
-class InMemoryIdTable(object):
+class InMemoryIdTable(IdTable):
     def __init__(self):
         self._id_table = {}
 
     def __len__(self) -> int:
         return len(self._id_table)
 
-    def __iter__(self) -> Iterable[EntityReference]:
+    def __iter__(self) -> Iterator[EntityReference]:
         return iter(self._id_table.values())
 
-    def put(self, ref: EntityReference) -> None:
+    def ids(self) -> Iterable[EntityReferenceIdentifier]:
+        return self._id_table.keys()
+
+    def put(self, ref: EntityReference) -> IdTable:
         if ref is None:
-            return
+            return self
         self._id_table[ref.id] = ref
+        return self
 
     def get(self, ref_id: EntityReferenceIdentifier) -> EntityReference:
         if ref_id not in self._id_table:
@@ -37,4 +43,6 @@ class InMemoryIdTable(object):
     def get_by_source(self, source: str) -> Iterable[EntityReference]:
         has_source = partial(self.__has_source, source=source)
         ids_with_source = filter(has_source, self._id_table.keys())
-        return map(self._id_table.get, ids_with_source)
+        return filter(
+            lambda ref: ref is not None, map(self._id_table.get, ids_with_source)
+        )
