@@ -1,8 +1,8 @@
 import pytest
+from matchescu.typing import EntityReferenceIdentifier
 
 from matchescu.reference_store._exceptions import EntityReferenceNotFound
 from matchescu.reference_store.id_table._in_memory import InMemoryIdTable
-from matchescu.typing import EntityReferenceIdentifier
 
 
 @pytest.fixture

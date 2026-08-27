@@ -1,6 +1,7 @@
 from collections.abc import Iterator
 
 from matchescu.typing import EntityReferenceIdentifier
+
 from matchescu.reference_store.comparison_space._protocol import BinaryComparisonSpace
 
 

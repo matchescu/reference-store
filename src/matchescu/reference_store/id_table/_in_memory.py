@@ -1,10 +1,10 @@
+from collections.abc import Iterable, Iterator
 from functools import partial
-from typing import Iterable, Iterator
 
-from matchescu.reference_store.id_table._protocol import IdTable
+from matchescu.typing import EntityReference, EntityReferenceIdentifier
 
 from matchescu.reference_store._exceptions import EntityReferenceNotFound
-from matchescu.typing import EntityReference, EntityReferenceIdentifier
+from matchescu.reference_store.id_table._protocol import IdTable
 
 
 class InMemoryIdTable(IdTable):

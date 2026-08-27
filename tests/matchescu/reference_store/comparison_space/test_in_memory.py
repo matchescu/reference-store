@@ -1,6 +1,5 @@
 import pytest
 
-
 from matchescu.reference_store.comparison_space._in_memory import (
     InMemoryComparisonSpace,
 )

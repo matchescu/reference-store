@@ -1,7 +1,7 @@
-from collections.abc import Iterable
-from typing import Protocol, Sized
+from collections.abc import Iterable, Sized
+from typing import Protocol
 
-from matchescu.typing import EntityReferenceIdentifier, EntityReference
+from matchescu.typing import EntityReference, EntityReferenceIdentifier
 
 
 class IdTable(Iterable[EntityReference], Sized, Protocol):

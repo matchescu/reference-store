@@ -1,4 +1,5 @@
-from typing import Protocol, Iterable, Sized
+from collections.abc import Iterable, Sized
+from typing import Protocol
 
 from matchescu.typing import EntityReferenceIdentifier
 

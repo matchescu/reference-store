@@ -1,5 +1,4 @@
 import pytest
-
 from matchescu.typing import EntityReferenceIdentifier
 
 
